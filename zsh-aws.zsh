@@ -14,6 +14,7 @@ plugin_dir=$(dirname "${0}":A)
 
 # shellcheck source=/dev/null
 source "${plugin_dir}"/src/helpers/messages.zsh
+
 # shellcheck source=/dev/null
 source "${plugin_dir}"/src/helpers/tools.zsh
 
