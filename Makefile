@@ -68,15 +68,19 @@ help:
 	@make docs.help
 	@make test.help
 
+
 setup:
 	@echo "=====> install packages..."
+	pyenv local ${PYTHON_VERSION}
 	$(PIPENV_INSTALL) --dev --skip-lock
-	$(PIPENV_RUN) pre-commit install && pre-commit install -t pre-push
+	$(PIPENV_RUN) pre-commit install
+	$(PIPENV_RUN) pre-commit install -t pre-push
 	@cp -rf provision/git/hooks/prepare-commit-msg .git/hooks/
-	@[[ -e ".env" ]] || cp -rf .env.example .env
+	@[ -e ".env" ] || cp -rf .env.example .env
 	@echo ${MESSAGE_HAPPY}
 
 environment:
 	@echo "=====> loading virtualenv ${PYENV_NAME}..."
+	pyenv local ${PYTHON_VERSION}
 	@pipenv --venv || $(PIPENV_INSTALL) --skip-lock --python=${PYTHON_VERSION}
 	@echo ${MESSAGE_HAPPY}
