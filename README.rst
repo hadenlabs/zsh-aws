@@ -26,6 +26,7 @@ Dependencies
     https://github.com/marzocchi/zsh-notify
     https://github.com/luismayta/zsh-functions
 
+
 Installation
 ------------
 
@@ -144,14 +145,14 @@ Feel free to contact me to discuss any issues, questions, or comments.
 
 |linkedin| |beacon| |made|
 
-Made with :coffee: and :pizza: by `luis mayta`_ and `hadenlabs`_.
+Made with :coffee: and :pizza: by `luis mayta`_ and `equipindustry`_.
 
 .. Links
 .. _`changelog`: CHANGELOG.rst
 .. _`contributors`: AUTHORS
 .. _`contributing`: docs/source/CONTRIBUTING.rst
 
-.. _`hadenlabs`: https://github.com/hadenlabs
+.. _`equipindustry`: https://github.com/equipindustry
 .. _`luis mayta`: https://github.com/luismayta
 
 
