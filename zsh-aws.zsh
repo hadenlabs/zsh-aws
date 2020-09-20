@@ -7,17 +7,14 @@
 # Authors:
 #   Luis Mayta <slovacus@gmail.com>
 #
+#
+ZSH_AWS_SRC_PATH="$(dirname "${0}")"
 
 export AWS_PACKAGE_NAME=aws
 
-AWS_PLUGIN_DIR=$(dirname "${0}")
-AWS_SRC_DIR="${AWS_PLUGIN_DIR}"/src
+# shellcheck source=/dev/null
+source "${ZSH_AWS_SRC_PATH}"/config/main.zsh
 
 # shellcheck source=/dev/null
-source "${AWS_SRC_DIR}"/base.zsh
+source "${ZSH_AWS_SRC_PATH}"/core/main.zsh
 
-# shellcheck source=/dev/null
-source "${AWS_SRC_DIR}"/aws.zsh
-
-# shellcheck source=/dev/null
-source "${AWS_SRC_DIR}"/tools.zsh
