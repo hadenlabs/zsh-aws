@@ -246,9 +246,9 @@
   dependencies:
     chalk "^4.0.0"
 
-"@equipindustry/eslint-config@^0.3.4":
+"@hadenlabs/eslint-config@^0.3.4":
   version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@equipindustry/eslint-config/-/eslint-config-0.3.4.tgz#a6b47dee5d04ba04759215315455db0d4ecb4be4"
+  resolved "https://registry.yarnpkg.com/@hadenlabs/eslint-config/-/eslint-config-0.3.4.tgz#a6b47dee5d04ba04759215315455db0d4ecb4be4"
   integrity sha512-NTo7/IpWhwneH03CO+BK311NniGL/N9VjJsJ6GQzzjwevGwD7kZM6IZbNc+QZMhBs+y4YJsq7a+Y4gLduhuH/g==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.30.0"
@@ -267,9 +267,9 @@
     prettier "^2.0.5"
     pretty-quick "^2.0.1"
 
-"@equipindustry/prettierrc@^0.2.0":
+"@hadenlabs/prettierrc@^0.2.0":
   version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@equipindustry/prettierrc/-/prettierrc-0.2.0.tgz#75c642eb2237f2f50dfe22500b58a94d465d7e61"
+  resolved "https://registry.yarnpkg.com/@hadenlabs/prettierrc/-/prettierrc-0.2.0.tgz#75c642eb2237f2f50dfe22500b58a94d465d7e61"
   integrity sha512-4k99NQpQ5efQBlWyOWSOi4Tfr25XzcZABI1Pdli3etSx0AN3Dh4mejLwPZXTLu2v0y3YwzQvSjYCaWgkPVHO6w==
   dependencies:
     prettier "^2.0.4"
