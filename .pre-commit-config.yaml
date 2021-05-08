@@ -1,4 +1,4 @@
-exclude: 'docs|.serverless|.serveless_nextjs|node_modules|migrations|.git|.tox|.gen'
+exclude: 'provision/ansible/prod/roles/contrib|provision/ansible/dev/roles/contrib|vendor|docs|.serverless|.serveless_nextjs|node_modules|migrations|.git|.tox|.gen'
 default_language_version:
   # force all unspecified python hooks to run python3
   python: python3.8.0
@@ -8,6 +8,17 @@ repos:
     rev: v2.12.1
     hooks:
       - id: validate_manifest
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.0.0
+    hooks:
+      - id: codespell
+        args: [--ignore-words=.codespell-ignores]
+        exclude: >
+          (?x)^(
+            .+\.vendor\/.*$|
+            .+\.node_modules\/.*$|
+            .+\.lock$|
+          )$
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.2.1
     hooks:
@@ -18,22 +29,17 @@ repos:
       - id: python-bandit-vulnerability-check
         args: []
         files: .py$
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
-    rev: v1.0.1
-    hooks:
-      - id: rst-linter
-        exclude: (docs/*|tests/*)
   - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v2.7.4
+    rev: v3.0.0a3
     hooks:
       - id: pylint
         exclude: __pycache__|migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
         args:
-          - --rcfile=.pylintrc
+          - --rcfile=.github/linters/.pylintrc
           - --disable=no-name-in-module,import-error,ungrouped-imports
           - --ignore=settings_test, migrations
   - repo: https://github.com/ambv/black
-    rev: 19.10b0
+    rev: 21.5b0
     hooks:
       - id: black
   - repo: https://gitlab.com/pycqa/flake8
@@ -41,7 +47,7 @@ repos:
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.782
+    rev: v0.812
     hooks:
       - id: mypy
         args:
@@ -75,35 +81,43 @@ repos:
       - id: file-contents-sorter
       - id: fix-encoding-pragma
       - id: sort-simple-yaml
-      - id: mixed-line-ending
-        fix: lr
       - id: check-executables-have-shebangs
-  - repo: https://github.com/tcassou/python-pre-commit-hooks
-    rev: 3383e2f83463370cf4651040fb697a636bb0374e
-    hooks:
-      - id: do_not_commit
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.10.0
     hooks:
       - id: blacken-docs
         additional_dependencies:
           - black
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.50.0
+  - repo: https://github.com/hadenlabs/pre-commit-hooks
+    rev: b7e7853e35a79db975171f80f0aabedb4f2e3e78
     hooks:
-      - id: terraform_fmt
-      - id: terraform_docs
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.7.1.1
-    hooks:
+      - id: do-not-commit
+      - id: markdown-link-check
+        exclude: \.tpl.md$
       - id: shellcheck
-        exclude: (^provision/script/wait-for-it.sh$|^provision/git/hooks/prepare-commit-msg$)
+        exclude: >
+          (?x)^(
+            .+\.provision/git/hooks/prepare-commit-msg$|
+            .+\.tpl.sh$|
+          )$
         args:
           - --exclude=SC1072,SC1073,SC2068
-  - repo: https://github.com/IamTheFij/docker-pre-commit
-    rev: v2.0.0
-    hooks:
-      - id: docker-compose-check
+      - id: todocheck
+      - id: gitleaks
+        args:
+          - --path=.
+          - --repo-config-path=.github/linters/.gitleaks.toml
+          - --verbose
+      - id: hadolint
+        args:
+          - --ignore=SC2001
+          - --ignore=SC2086
+          - --ignore=SC2102
+          - --ignore=DL3008
+          - --ignore=DL3013
+          - --ignore=DL3018
+          - --ignore=DL4006
+
   - repo: local
     hooks:
       - id: prettier
@@ -112,29 +126,25 @@ repos:
         entry: ./node_modules/prettier/bin-prettier.js
         args:
           - '--write=true'
-          - '--list-different'
-          - '--config=prettier.config.js'
-        files: \.(js?(on)|ts?(x)|scss|md|y?(a)ml|graphql|less)$
-        exclude: lib|node_modules
+          - '--config=.github/linters/prettier.config.js'
+          - '--ignore-path=.github/linters/.prettierignore'
+        files: \.(js|jsx|json|ts|tsx|mjs|d.ts|md|yml|yaml|gql|graphql|mjml)$
+        exclude: node_modules
       - id: eslint
         name: eslint
-        language: system
-        pass_filenames: true
-        entry: node_modules/eslint/bin/eslint.js --config=.eslintrc.js --ignore-path=.eslintignore --color
+        language: node
+        entry: node_modules/eslint/bin/eslint.js
         args:
           - '--fix'
+          - '--color'
+          - '--config=.github/linters/.eslintrc.js'
+          - '--ignore-path=.github/linters/.eslintignore'
         files: \.(js|jsx|ts|tsx|mjs|d.ts)$
+        exclude: node_modules
       - id: stylint
         name: stylint
         language: system
         pass_filenames: true
-        entry: node_modules/stylelint/bin/stylelint.js --config=.stylintrc --syntax less **/*.less
+        entry: node_modules/stylelint/bin/stylelint.js --config=.github/linters/.stylintrc --syntax less **/*.less
         args: [--fix]
-        files: \.(less)$
-      - id: dockerfile-provides-entrypoint
-        name: hadolint
-        description: Lint Dockerfiles with hadolint
-        language: docker_image
-        entry: --entrypoint /bin/hadolint hadolint/hadolint:latest --ignore DL3008 --ignore DL3013 --ignore DL3018 --ignore DL3008 --ignore DL4006 --ignore SC2001 --ignore SC2086 --ignore SC2102 -
-        types: [file]
-        files: Dockerfile(.*)
+        files: \.(css|scss|sass|less)$
