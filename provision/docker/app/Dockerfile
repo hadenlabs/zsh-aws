@@ -2,8 +2,6 @@ FROM hadenlabs/python:3.8.0-slim
 
 ARG stage
 
-LABEL NAME zsh-aws-app-$stage
-
 ENV USERNAME developer
 
 ENV PACKAGES bash \
@@ -38,7 +36,7 @@ RUN apt-get update -y \
 
 
 # pipenv
-  && pip3 install pipenv \
+  && pip3 install --no-cache-dir pipenv \
   && pipenv install --dev --skip-lock \
   && pipenv shell --fancy \
 
