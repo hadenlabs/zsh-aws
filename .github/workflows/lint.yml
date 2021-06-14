@@ -19,14 +19,6 @@ jobs:
       - name: Checkout
         if: ${{ !env.ACT }}
         uses: actions/checkout@v2
-        with:
-          path: 'zsh-aws'
-      - name: changes files
-        if: ${{ !env.ACT }}
-        id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
-        with:
-          output: ' '
       - uses: hadenlabs/action-pre-commit@0.1.2
         with:
-          args: run --files ${{ steps.file_changes.outputs.files}}
+          args: run --all-files
