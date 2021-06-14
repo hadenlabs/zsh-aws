@@ -21,12 +21,15 @@ github_repo: hadenlabs/zsh-aws
 
 # Badges to display
 badges:
-  - name: GitHub release
-    image: https://img.shields.io/github/release/hadenlabs/zsh-aws?style=flat-square
-    url: https://github.com/hadenlabs/zsh-aws/releases/latest
+  - name: Latest Release
+    image: https://img.shields.io/github/release/hadenlabs/zsh-aws
+    url: https://github.com/hadenlabs/zsh-aws/releases
   - name: Lint
     image: https://img.shields.io/github/workflow/status/hadenlabs/zsh-aws/lint-code
-    url: https://github.com/hadenlabs/zsh-aws/actions?workflow=lint-code
+    url: https://github.com/hadenlabs/zsh-aws/actions
+  - name: Issues
+    image: https://img.shields.io/github/issues/hadenlabs/zsh-aws
+    url: https://github.com/hadenlabs/zsh-aws/issues
   - name: Conventional Commits
     image: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow
     url: https://conventionalcommits.org
