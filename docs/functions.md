@@ -1,27 +1,11 @@
 ## Functions
 
-zsh goenv includes a small utility `goenv` to fetch and install new packages.
+zsh aws includes a small utility `aws` to fetch and install new packages.
 
-#### `goenv::install`
+#### `aws::install`
 
-Install goenv.
+Install aws.
 
-#### `goenv::load`
+#### `aws::package::all::install`
 
-Load path goenv.
-
-#### `goenv::upgrade`
-
-Upgrade version goenv.
-
-#### `goenv::package::all::install`
-
-Install all package of goenv.
-
-#### `goenv::install::versions`
-
-Install versions of config for goenv.
-
-#### `goenv::install::version::global`
-
-Install a version global of goenv.
+Install all package of aws.

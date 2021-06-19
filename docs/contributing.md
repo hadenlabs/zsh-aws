@@ -48,15 +48,15 @@ Use [slash convention]() with the same leaders as `commits` e.g.:
 
 ### Code Submission
 
-1.  See if a [Pull Request](https://github.com/hadenlabs/zsh-aws/pull-requests/) exists
+1.  See if a [Pull Request](https://github.com/hadenlabs/zsh-aws/pulls/) exists
     - Add some comments or review the code to help it along
     - Don\'t be afraid to comment when logic needs clarification
-2.  Create a Fork and open a [Pull Request](https://github.com/hadenlabs/zsh-aws/pull-requests/) if needed
+2.  Create a Fork and open a [Pull Request](https://github.com/hadenlabs/zsh-aws/pulls/) if needed
 
 ### Code Review
 
 - Anyone can review code
-- Any [Pull Request](https://github.com/hadenlabs/zsh-aws/pull-requests/) should be closed or merged within a week
+- Any [Pull Request](https://github.com/hadenlabs/zsh-aws/pulls/) should be closed or merged within a week
 
 ### Code Acceptance
 
