@@ -16,5 +16,7 @@ export AWS_PACKAGE_NAME=aws
 source "${ZSH_AWS_PATH}"/config/main.zsh
 
 # shellcheck source=/dev/null
-source "${ZSH_AWS_PATH}"/core/main.zsh
+source "${ZSH_AWS_PATH}"/internal/main.zsh
 
+# shellcheck source=/dev/null
+source "${ZSH_AWS_PATH}"/pkg/main.zsh
