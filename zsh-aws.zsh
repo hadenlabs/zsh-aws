@@ -8,13 +8,13 @@
 #   Luis Mayta <slovacus@gmail.com>
 #
 #
-ZSH_AWS_SRC_PATH="$(dirname "${0}")"
+ZSH_AWS_PATH="$(dirname "${0}")"
 
 export AWS_PACKAGE_NAME=aws
 
 # shellcheck source=/dev/null
-source "${ZSH_AWS_SRC_PATH}"/config/main.zsh
+source "${ZSH_AWS_PATH}"/config/main.zsh
 
 # shellcheck source=/dev/null
-source "${ZSH_AWS_SRC_PATH}"/core/main.zsh
+source "${ZSH_AWS_PATH}"/core/main.zsh
 
