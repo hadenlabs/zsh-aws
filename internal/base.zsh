@@ -8,7 +8,7 @@ function aws::internal::packages::install {
     fi
 
     for package in "${AWS_GO_PACKAGES[@]}"; do
-       GO111MODULE=on go get -u -v "${package}"
+       GO111MODULE=on go install "${package}"
     done
 
     message_success "Installed required Go packages"
